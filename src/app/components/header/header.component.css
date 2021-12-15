@@ -1,0 +1,26 @@
+.header-container{
+  display: flex;
+  justify-content: space-between;
+}
+.logo-section{
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+}
+.logo-section-icon{
+  height: 35px;
+  width: 35px;
+  font-size: 35px;
+}
+.menu-section{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  height: 95%;
+}
+.menu-section-item{
+  flex-grow: 1;
+  height: inherit;
+  font-size: inherit;
+}
+
