@@ -1,4 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Note} from "../../core/models/Note";
+import {defaultNote} from "../../constans/notesDefaults";
 
 @Component({
   selector: 'app-note',
@@ -11,6 +13,5 @@ export class NoteComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  @Input() title = "Title"
-  @Input() description = "Description"
+  @Input() note: Note = defaultNote;
 }
