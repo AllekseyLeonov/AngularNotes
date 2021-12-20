@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import {defaultSharedNote, defaultSharedNotesArray} from "../../constans/sharedNotesDefaults";
+import {Note} from "../../core/models/Note";
+
 @Component({
   selector: 'app-shared-notes-page',
   templateUrl: './shared-notes-page.component.html',
@@ -9,7 +12,12 @@ export class SharedNotesPageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
+  activeNote: Note = defaultSharedNote;
+  notesArray : Note[] = defaultSharedNotesArray;
+
+  onActiveNoteChange(activeNote: Note){
+    this.activeNote = activeNote;
+  }
 }

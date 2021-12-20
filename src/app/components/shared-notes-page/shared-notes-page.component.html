@@ -1,1 +1,7 @@
-<p>shared-notes-page works!</p>
+<div class="container">
+  <app-notes-list
+    (onActiveNoteChange)="onActiveNoteChange($event)"
+    [notesArray]="notesArray"
+  ></app-notes-list>
+  <app-note [note]="activeNote"></app-note>
+</div>
