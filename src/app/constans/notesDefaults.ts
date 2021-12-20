@@ -1,5 +1,5 @@
 export const defaultNote = {
-  id: 0,
+  id: 1,
   title: "Default note",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
     " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
@@ -45,7 +45,7 @@ export const defaultNote = {
 
 export const defaultNotesArray = [
   {
-    id: 0,
+    id: 2,
     title: "Note 1",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
       " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
@@ -57,7 +57,7 @@ export const defaultNotesArray = [
     userId: 1
   },
   {
-    id: 1,
+    id: 3,
     title: "Note 2",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
       " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +

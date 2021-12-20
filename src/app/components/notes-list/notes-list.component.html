@@ -1,6 +1,15 @@
 <div class="container">
-  <div *ngFor="let note of notesArray">
-    <app-notes-list-item [note]="note"></app-notes-list-item>
-  </div>
+  <mat-list>
+    <mat-list-item
+      *ngFor="let note of notesArray"
+      (click)="onListItemClick(note)"
+      class="list-item"
+      [class.list-item-active]="note.id === activeNoteId"
+      mat-ripple
+    >
+      <h3 mat-line>{{note.title}}</h3>
+      <h4 mat-line>{{getDescriptionPreview(note)}}</h4>
+    </mat-list-item>
+  </mat-list>
 </div>
 

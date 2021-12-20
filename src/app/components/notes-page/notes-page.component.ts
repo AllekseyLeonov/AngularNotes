@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Note} from "../../core/models/Note";
+import {defaultNote} from "../../constans/notesDefaults";
 
 @Component({
   selector: 'app-notes-page',
@@ -9,7 +11,12 @@ export class NotesPageComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { }
+
+  activeNote: Note = defaultNote;
+
+  onActiveNoteChange(activeNote: Note){
+    this.activeNote = activeNote;
   }
 
 }

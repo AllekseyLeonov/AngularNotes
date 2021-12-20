@@ -10,7 +10,8 @@ import { NoteComponent } from './components/note/note.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NotesPageComponent } from './components/notes-page/notes-page.component';
 import {NotesListComponent} from "./components/notes-list/notes-list.component";
-import { NotesListItemComponent } from './components/notes-list-item/notes-list-item.component';
+import {MatListModule} from "@angular/material/list";
+import {MatRippleModule} from "@angular/material/core";
 
 /*
  TODO: remove 'notes' page to a separate module
@@ -23,14 +24,15 @@ import { NotesListItemComponent } from './components/notes-list-item/notes-list-
     HeaderComponent,
     NotesPageComponent,
     NotesListComponent,
-    NotesListItemComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule,
+    MatRippleModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,3 +3,11 @@
   background-color: bisque;
   padding-left: 10px;
 }
+
+.list-item{
+  cursor: pointer;
+}
+
+.list-item-active{
+  background-color: rgba(0,0,0,0.10);
+}

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Note} from "../../core/models/Note";
 import {defaultNotesArray} from "../../constans/notesDefaults";
 
@@ -14,4 +14,19 @@ export class NotesListComponent implements OnInit {
   ngOnInit(): void { }
 
   @Input() notesArray: Note[] = defaultNotesArray;
+  @Output() onActiveNoteChange: EventEmitter<Note> = new EventEmitter<Note>();
+
+  activeNoteId: number = 0;
+
+  getDescriptionPreview(note : Note): string {
+    const descriptionPreviewLength = 35;
+    return note.description.length > descriptionPreviewLength ?
+      note.description.substring(0, descriptionPreviewLength) + "..."
+      : note.description;
+  }
+
+  onListItemClick(note: Note): void {
+    this.activeNoteId = note.id;
+    this.onActiveNoteChange.emit(note);
+  }
 }
