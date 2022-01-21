@@ -7,6 +7,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatListModule} from "@angular/material/list";
 import {MatRippleModule} from "@angular/material/core";
 import {RouterModule, Routes} from "@angular/router";
+import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
 
 import { AppComponent } from './app.component';
 import { NoteComponent } from './components/note/note.component';
@@ -15,6 +16,11 @@ import { NotesPageComponent } from './components/notes-page/notes-page.component
 import {NotesListComponent} from "./components/notes-list/notes-list.component";
 import { SharedNotesPageComponent } from './components/shared-notes-page/shared-notes-page.component';
 import { AboutComponent } from './components/about/about.component';
+import { DeleteDialogComponent } from './components/note/delete-dialog/delete-dialog.component';
+import { EditDialogComponent } from './components/note/edit-dialog/edit-dialog.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {FormsModule} from "@angular/forms";
 
 /*
  TODO: remove every page to a separate module
@@ -36,6 +42,8 @@ const appRoutes: Routes =[
     NotesListComponent,
     SharedNotesPageComponent,
     AboutComponent,
+    DeleteDialogComponent,
+    EditDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,9 +53,13 @@ const appRoutes: Routes =[
     MatIconModule,
     MatListModule,
     MatRippleModule,
-    RouterModule.forRoot(appRoutes)
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
   ],
-  providers: [],
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

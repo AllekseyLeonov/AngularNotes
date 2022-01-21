@@ -1,6 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
+
 import {Note} from "../../core/models/Note";
 import {defaultNote} from "../../constans/notesDefaults";
+import {DeleteDialogComponent} from "./delete-dialog/delete-dialog.component";
+import {EditDialogComponent} from "./edit-dialog/edit-dialog.component";
 
 @Component({
   selector: 'app-note',
@@ -9,9 +13,18 @@ import {defaultNote} from "../../constans/notesDefaults";
 })
 export class NoteComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void { }
 
   @Input() note: Note = defaultNote;
+
+  openDeleteDialog() {
+    this.dialog.open(DeleteDialogComponent);
+  }
+
+  openEditDialog() {
+    let editDialogRef = this.dialog.open(EditDialogComponent, {data: this.note});
+    editDialogRef.afterClosed().subscribe(result => console.log(result))
+  }
 }

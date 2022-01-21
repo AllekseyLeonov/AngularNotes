@@ -6,3 +6,11 @@
     {{ note.description }}
   </h4>
 </div>
+<div>
+  <button mat-icon-button>
+    <mat-icon (click)="openEditDialog()">edit</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon (click)="openDeleteDialog()">delete</mat-icon>
+  </button>
+</div>
