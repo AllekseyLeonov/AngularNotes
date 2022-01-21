@@ -1,7 +1,7 @@
 <div class="container">
   <app-notes-list
     (onActiveNoteChange)="onActiveNoteChange($event)"
-    [notesArray]="notesArray"
+    [notes]="notes"
   ></app-notes-list>
   <app-note [note]="activeNote"></app-note>
 </div>

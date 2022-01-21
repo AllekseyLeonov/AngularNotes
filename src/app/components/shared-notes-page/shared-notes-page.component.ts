@@ -15,7 +15,7 @@ export class SharedNotesPageComponent implements OnInit {
   ngOnInit(): void { }
 
   activeNote: Note = defaultSharedNote;
-  notesArray : Note[] = defaultSharedNotesArray;
+  notes : Note[] = defaultSharedNotesArray;
 
   onActiveNoteChange(activeNote: Note){
     this.activeNote = activeNote;

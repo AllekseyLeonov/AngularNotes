@@ -8,6 +8,7 @@ import {MatListModule} from "@angular/material/list";
 import {MatRippleModule} from "@angular/material/core";
 import {RouterModule, Routes} from "@angular/router";
 import {MAT_DIALOG_DEFAULT_OPTIONS, MatDialogModule} from "@angular/material/dialog";
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { NoteComponent } from './components/note/note.component';
@@ -21,10 +22,6 @@ import { EditDialogComponent } from './components/note/edit-dialog/edit-dialog.c
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
-
-/*
- TODO: remove every page to a separate module
-*/
 
 const appRoutes: Routes =[
   { path: 'notes', component: NotesPageComponent},
@@ -58,6 +55,7 @@ const appRoutes: Routes =[
     MatInputModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
+    HttpClientModule,
   ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]

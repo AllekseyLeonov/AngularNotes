@@ -1,7 +1,7 @@
 <div class="container">
   <mat-list>
     <mat-list-item
-      *ngFor="let note of notesArray"
+      *ngFor="let note of notes"
       (click)="onListItemClick(note)"
       class="list-item"
       [class.list-item-active]="note.id === activeNoteId"

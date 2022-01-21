@@ -1,6 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Note} from "../../core/models/Note";
-import {defaultNotesArray} from "../../constans/notesDefaults";
 
 @Component({
   selector: 'app-notes-list',
@@ -13,7 +12,7 @@ export class NotesListComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  @Input() notesArray: Note[] = defaultNotesArray;
+  @Input() notes: Note[] = [];
   @Output() onActiveNoteChange: EventEmitter<Note> = new EventEmitter<Note>();
 
   activeNoteId: number = 0;
