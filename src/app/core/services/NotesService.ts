@@ -3,9 +3,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 import {INotesService} from "./interfaces/INotesService";
 import {Note} from "../models/Note";
+import {environment} from "../../../environments/environment";
 
 export default class NotesService implements INotesService{
   getNotesByUserId(client: HttpClient, userId: number): Observable<Note[]> {
-    return client.get<Note[]>(`https://localhost:7063/notes?userId=${userId}`);
+    return client.get<Note[]>(`${environment.apiRootAddress}/notes?userId=${userId}`);
+  }
+
+  createNote(client: HttpClient, note: Note): Observable<Note>{
+    return client.post<Note>(`${environment.apiRootAddress}/notes/createNote`, note);
   }
 }

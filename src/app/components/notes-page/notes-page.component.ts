@@ -51,5 +51,6 @@ export class NotesPageComponent implements OnInit {
       userId: 1,
     }
     this.notes = this.notes.concat(newNote);
+    this.notesService.createNote(this.client, newNote).subscribe();
   }
 }
