@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Note} from "../../core/models/Note";
+import {MatDialog} from "@angular/material/dialog";
+import {CreateNoteDialogComponent} from "./create-note-dialog/create-note-dialog.component";
 
 @Component({
   selector: 'app-notes-list',
@@ -8,12 +10,13 @@ import {Note} from "../../core/models/Note";
 })
 export class NotesListComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void { }
 
   @Input() notes: Note[] = [];
   @Output() onActiveNoteChange: EventEmitter<Note> = new EventEmitter<Note>();
+  @Output() onCreateNewNote: EventEmitter<Note> = new EventEmitter<Note>();
 
   activeNoteId: number = 0;
 
@@ -27,5 +30,10 @@ export class NotesListComponent implements OnInit {
   onListItemClick(note: Note): void {
     this.activeNoteId = note.id;
     this.onActiveNoteChange.emit(note);
+  }
+
+  onCreateButtonClick() : void {
+    const createNoteDialog = this.dialog.open(CreateNoteDialogComponent);
+    createNoteDialog.afterClosed().subscribe(note => note && this.onCreateNewNote.emit(note));
   }
 }

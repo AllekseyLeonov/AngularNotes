@@ -1,0 +1,18 @@
+<h2 mat-dialog-title> Create Note </h2>
+<mat-dialog-content>
+  <form >
+    <mat-form-field>
+      <mat-label>Title</mat-label>
+      <input #titleInput (input)="onInputTitle(titleInput.value)" matInput>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea #descriptionInput (input)="onInputDescription(descriptionInput.value)" matInput></textarea>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close> Cancel </button>
+  <button mat-button [mat-dialog-close]="note"> Create </button>
+</mat-dialog-actions>

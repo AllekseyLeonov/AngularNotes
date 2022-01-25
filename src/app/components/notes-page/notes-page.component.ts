@@ -5,6 +5,10 @@ import {Note} from "../../core/models/Note";
 import {defaultNote, defaultNotesArray} from "../../constans/notesDefaults";
 import NotesService from "../../core/services/NotesService";
 
+export interface NoteViewModel {
+  title: string,
+  description: string,
+}
 
 @Component({
   selector: 'app-notes-page',
@@ -27,4 +31,25 @@ export class NotesPageComponent implements OnInit {
     this.activeNote = activeNote;
   }
 
+  onEditNote(editedNote: Note){
+    this.activeNote = editedNote;
+    this.notes.forEach(note=> {
+      if(note.id == editedNote.id){
+        note.description = editedNote.description;
+        note.title = editedNote.title;
+        return;
+      }
+    })
+  }
+
+  onCreateNote(note: NoteViewModel){
+    const newNote = {
+      id: Math.max.apply(null, this.notes.map(note=> note.id)) + 1,
+      title: note.title,
+      description: note.description,
+      date: Date.now().toString(),
+      userId: 1,
+    }
+    this.notes = this.notes.concat(newNote);
+  }
 }

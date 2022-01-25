@@ -2,6 +2,8 @@
   max-width: 500px;
   background-color: bisque;
   padding-left: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .list-item{
@@ -10,4 +12,8 @@
 
 .list-item-active{
   background-color: rgba(0,0,0,0.10);
+}
+
+.add-button{
+  align-self: center;
 }

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 
 import {Note} from "../../core/models/Note";
@@ -18,13 +18,14 @@ export class NoteComponent implements OnInit {
   ngOnInit(): void { }
 
   @Input() note: Note = defaultNote;
+  @Output() onEditNote : EventEmitter<Note> = new EventEmitter<Note>();
 
   openDeleteDialog() {
     this.dialog.open(DeleteDialogComponent);
   }
 
   openEditDialog() {
-    let editDialogRef = this.dialog.open(EditDialogComponent, {data: this.note});
-    editDialogRef.afterClosed().subscribe(result => console.log(result))
+    let editDialogRef = this.dialog.open(EditDialogComponent, {data: {...this.note}});
+    editDialogRef.afterClosed().subscribe(result => this.onEditNote.emit(result));
   }
 }

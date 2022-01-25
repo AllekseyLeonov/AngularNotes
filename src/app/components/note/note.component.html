@@ -1,10 +1,6 @@
 <div class="note-container">
-  <h2 class="title">
-    {{ note.title }}
-  </h2>
-  <h4>
-    {{ note.description }}
-  </h4>
+  <h2 class="title" [textContent]="note.title"></h2>
+  <h4 [textContent]="note.description"></h4>
 </div>
 <div>
   <button mat-icon-button>

@@ -22,6 +22,7 @@ import { EditDialogComponent } from './components/note/edit-dialog/edit-dialog.c
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {FormsModule} from "@angular/forms";
+import { CreateNoteDialogComponent } from './components/notes-list/create-note-dialog/create-note-dialog.component';
 
 const appRoutes: Routes =[
   { path: 'notes', component: NotesPageComponent},
@@ -41,6 +42,7 @@ const appRoutes: Routes =[
     AboutComponent,
     DeleteDialogComponent,
     EditDialogComponent,
+    CreateNoteDialogComponent,
   ],
   imports: [
     BrowserModule,

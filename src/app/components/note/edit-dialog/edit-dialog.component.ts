@@ -14,4 +14,11 @@ export class EditDialogComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  onInputTitle(title: string){
+    this.data.title = title;
+  }
+
+  onInputDescription(description: string){
+    this.data.description = description;
+  }
 }

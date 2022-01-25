@@ -3,12 +3,12 @@
   <form >
     <mat-form-field>
       <mat-label>Title</mat-label>
-      <input matInput [(ngModel)]="data.title">
+      <input matInput #titleInput [value]="data.title" (input)="onInputTitle(titleInput.value)" name="title">
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Description</mat-label>
-      <textarea matInput [value]=data.description></textarea>
+      <textarea matInput #descriptionInput [value]="data.description" (input)="onInputDescription(descriptionInput.value)" name="desc"></textarea>
     </mat-form-field>
   </form>
 </mat-dialog-content>
