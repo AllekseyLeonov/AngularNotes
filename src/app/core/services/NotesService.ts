@@ -11,6 +11,6 @@ export default class NotesService implements INotesService{
   }
 
   createNote(client: HttpClient, note: Note): Observable<Note>{
-    return client.post<Note>(`${environment.apiRootAddress}/notes/createNote`, note);
+    return client.post<Note>(`${environment.apiRootAddress}/createNote`, note);
   }
 }
