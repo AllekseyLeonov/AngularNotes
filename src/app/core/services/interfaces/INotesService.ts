@@ -4,6 +4,6 @@ import {Note} from "../../models/Note";
 import {Observable} from "rxjs";
 
 export interface INotesService{
-  getNotesByUserId$(client: HttpClient, userId: number) : Observable<Note[]>
-  createNote$(client: HttpClient, note: Note): Observable<Note>
+  getNotesByUserId$(userId: number) : Observable<Note[]>
+  createNote$(note: Note): Observable<Note>
 }

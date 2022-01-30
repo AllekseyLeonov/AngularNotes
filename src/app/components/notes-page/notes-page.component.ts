@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
@@ -6,7 +6,7 @@ import {Store} from "@ngrx/store";
 import {Note} from "../../core/models/Note";
 import {defaultNote, defaultNotesArray} from "../../constans/notesDefaults";
 import NotesService from "../../core/services/NotesService";
-import {notesListChange, notesSelector} from "../../store";
+import {createRequest, notesListChange, notesSelector} from "../../store";
 
 
 export interface NoteViewModel {
@@ -18,18 +18,24 @@ export interface NoteViewModel {
   selector: 'app-notes-page',
   templateUrl: './notes-page.component.html',
   styleUrls: ['./notes-page.component.css'],
-  providers: [NotesService]
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NotesPageComponent implements OnInit {
 
-  constructor(private notesService: NotesService, private client: HttpClient, private store$:Store){}
+  constructor(private notesService: NotesService, private store$:Store, private  cdr: ChangeDetectorRef,){}
 
   ngOnInit(): void {
-    this.notesService.getNotesByUserId$(this.client, 1)
+    this.notesService.getNotesByUserId$(1)
       .subscribe(
-        notes => this.store$.dispatch(notesListChange({notes: notes}))
+        notes => {
+          this.store$.dispatch(notesListChange({notes: notes}));
+          this.cdr.detectChanges();
+        }
       );
-    this.notes$.subscribe(notesFromStore => this.notes = notesFromStore);
+    this.notes$.subscribe(notesFromStore => {
+      this.notes = notesFromStore;
+      this.cdr.detectChanges();
+    });
   }
 
   activeNote: Note = defaultNote;
@@ -40,34 +46,19 @@ export class NotesPageComponent implements OnInit {
     this.activeNote = activeNote;
   }
 
-  onChangeSearchInput(input: string){
-    this.notes$.subscribe()
-  }
-
   onEditNote(editedNote: Note){
     this.activeNote = editedNote;
-    /*
-    this.notes$.forEach(note=> {
-      if(note.id == editedNote.id){
-        note.description = editedNote.description;
-        note.title = editedNote.title;
-        return;
-      }
-    })
-    */
   }
 
   onCreateNote(note: NoteViewModel){
-    /*
+    const date = new Date();
     const newNote = {
-      id: Math.max.apply(null, this.notes$.pipe(map(note=> note.id)) + 1),
+      id: Math.max.apply(null, this.notes.map(note=> note.id)) + 1,
       title: note.title,
       description: note.description,
-      date: Date.now().toString(),
+      date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`,
       userId: 1,
     }
-    this.notes$ = this.notes$.concat(newNote);
-    this.notesService.createNote(this.client, newNote).subscribe();
-     */
+    this.store$.dispatch(createRequest({note: newNote}));
   }
 }

@@ -1,16 +1,20 @@
 import {Observable} from "rxjs";
 import {HttpClient} from '@angular/common/http';
+import {Injectable} from "@angular/core";
 
 import {INotesService} from "./interfaces/INotesService";
 import {Note} from "../models/Note";
 import {environment} from "../../../environments/environment";
 
+@Injectable()
 export default class NotesService implements INotesService{
-  getNotesByUserId$(client: HttpClient, userId: number): Observable<Note[]> {
-    return client.get<Note[]>(`${environment.apiRootAddress}/notes?userId=${userId}`);
+  constructor(private client: HttpClient) {}
+
+  getNotesByUserId$(userId: number): Observable<Note[]> {
+    return this.client.get<Note[]>(`${environment.apiRootAddress}/notes?userId=${userId}`);
   }
 
-  createNote$(client: HttpClient, note: Note): Observable<Note>{
-    return client.post<Note>(`${environment.apiRootAddress}/createNote`, note);
+  createNote$(note: Note): Observable<Note>{
+    return this.client.post<Note>(`${environment.apiRootAddress}/createNote`, note);
   }
 }

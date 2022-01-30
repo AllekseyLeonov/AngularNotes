@@ -25,13 +25,21 @@ import {DeleteDialogComponent} from './components/note/delete-dialog/delete-dial
 import {EditDialogComponent} from './components/note/edit-dialog/edit-dialog.component';
 import {CreateNoteDialogComponent} from './components/notes-list/create-note-dialog/create-note-dialog.component';
 import {notesReducer} from "./store";
+import {EffectsModule} from "@ngrx/effects";
+import {notesEffects} from "./store/notesEffects";
+import NotesService from "./core/services/NotesService";
+import NotesStoreModule from "./store/notes-store/notes-store.module";
 
 
 const appRoutes: Routes = [
-  {path: 'notes', component: NotesPageComponent},
+  {
+    path: 'notes',
+    component: NotesPageComponent,
+    loadChildren: () => import("./store/notes-store/notes-store.module").then(mod => mod.default)
+  },
   {path: 'shared-notes', component: SharedNotesPageComponent},
   {path: 'about', component: AboutComponent},
-  {path: "**", redirectTo: "notes"}
+  {path: "**", redirectTo: "notes"},
 ];
 
 @NgModule({
@@ -62,9 +70,10 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
     StoreModule.forRoot({}),
-    StoreModule.forFeature("notesState", notesReducer),
+    EffectsModule.forRoot([]),
+    NotesStoreModule,
   ],
-  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}, NotesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
