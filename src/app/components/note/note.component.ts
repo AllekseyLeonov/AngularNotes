@@ -19,13 +19,15 @@ export class NoteComponent implements OnInit {
 
   @Input() note: Note = defaultNote;
   @Output() onEditNote : EventEmitter<Note> = new EventEmitter<Note>();
+  @Output() onDeleteNote : EventEmitter<Note> = new EventEmitter<Note>();
 
   openDeleteDialog() {
-    this.dialog.open(DeleteDialogComponent);
+    const deleteDialog = this.dialog.open(DeleteDialogComponent);
+    deleteDialog.afterClosed().subscribe(result=> this.onDeleteNote.emit(this.note));
   }
 
   openEditDialog() {
-    let editDialogRef = this.dialog.open(EditDialogComponent, {data: {...this.note}});
+    const editDialogRef = this.dialog.open(EditDialogComponent, {data: {...this.note}});
     editDialogRef.afterClosed().subscribe(result => this.onEditNote.emit(result));
   }
 }

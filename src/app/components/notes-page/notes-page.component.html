@@ -5,6 +5,11 @@
     (onCreateNewNote)="onCreateNote($event)"
   >
   </app-notes-list>
-  <app-note [note]="activeNote" (onEditNote)="onEditNote($event)"></app-note>
+  <app-note
+    [note]="activeNote"
+    (onEditNote)="onEditNote($event)"
+    (onDeleteNote)="onDeleteNote($event)"
+  >
+  </app-note>
 </div>
 

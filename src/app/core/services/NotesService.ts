@@ -17,4 +17,12 @@ export default class NotesService implements INotesService{
   createNote$(note: Note): Observable<Note>{
     return this.client.post<Note>(`${environment.apiRootAddress}/createNote`, note);
   }
+
+  deleteNote$(noteId: number): Observable<Note>{
+    return this.client.delete<Note>(`${environment.apiRootAddress}/deleteNote?noteId=` + noteId);
+  }
+
+  editNote$(note: Note): Observable<Note>{
+    return this.client.patch<Note>(`${environment.apiRootAddress}/editNote`, note);
+  }
 }

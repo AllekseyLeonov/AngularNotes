@@ -1,12 +1,10 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 
 import {Note} from "../../core/models/Note";
 import {defaultNote, defaultNotesArray} from "../../constans/notesDefaults";
-import NotesService from "../../core/services/NotesService";
-import {createRequest, notesListChange, notesSelector} from "../../store";
+import {createRequest, deleteRequest, editRequest, getRequest, notesSelector} from "../../store";
 
 
 export interface NoteViewModel {
@@ -22,16 +20,10 @@ export interface NoteViewModel {
 })
 export class NotesPageComponent implements OnInit {
 
-  constructor(private notesService: NotesService, private store$:Store, private  cdr: ChangeDetectorRef,){}
+  constructor(private store$:Store, private  cdr: ChangeDetectorRef,){}
 
   ngOnInit(): void {
-    this.notesService.getNotesByUserId$(1)
-      .subscribe(
-        notes => {
-          this.store$.dispatch(notesListChange({notes: notes}));
-          this.cdr.detectChanges();
-        }
-      );
+    this.store$.dispatch(getRequest({userId: 1}));
     this.notes$.subscribe(notesFromStore => {
       this.notes = notesFromStore;
       this.cdr.detectChanges();
@@ -47,7 +39,9 @@ export class NotesPageComponent implements OnInit {
   }
 
   onEditNote(editedNote: Note){
+    console.log(editedNote);
     this.activeNote = editedNote;
+    this.store$.dispatch(editRequest({note: editedNote}));
   }
 
   onCreateNote(note: NoteViewModel){
@@ -60,5 +54,10 @@ export class NotesPageComponent implements OnInit {
       userId: 1,
     }
     this.store$.dispatch(createRequest({note: newNote}));
+  }
+
+  onDeleteNote(note: Note){
+    this.store$.dispatch(deleteRequest({noteId: note.id}));
+    this.activeNote = defaultNote;
   }
 }
