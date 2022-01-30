@@ -1,13 +1,17 @@
 <div class="container">
+  <mat-form-field>
+    <input matNativeControl [(ngModel)]="input">
+  </mat-form-field>
   <mat-list>
     <mat-list-item
-      *ngFor="let note of notes"
+      *ngFor="let note of getFilteredArray()"
       (click)="onListItemClick(note)"
       class="list-item"
       [class.list-item-active]="note.id === activeNoteId"
       mat-ripple
     >
       <h3 mat-line>{{note.title}}</h3>
+      <h3 mat-line>{{note.date}}</h3>
       <h4 mat-line>{{getDescriptionPreview(note)}}</h4>
     </mat-list-item>
   </mat-list>

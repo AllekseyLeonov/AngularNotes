@@ -29,13 +29,19 @@ export class NotesPageComponent implements OnInit {
       .subscribe(
         notes => this.store$.dispatch(notesListChange({notes: notes}))
       );
+    this.notes$.subscribe(notesFromStore => this.notes = notesFromStore);
   }
 
   activeNote: Note = defaultNote;
-  notes$: Observable<Note[]> = this.store$.select(notesSelector);
+  notes$: Observable<Note[]> = (this.store$.select(notesSelector));
+  notes: Note[] = [];
 
   onActiveNoteChange(activeNote: Note){
     this.activeNote = activeNote;
+  }
+
+  onChangeSearchInput(input: string){
+    this.notes$.subscribe()
   }
 
   onEditNote(editedNote: Note){

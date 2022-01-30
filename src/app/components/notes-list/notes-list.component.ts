@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Note} from "../../core/models/Note";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateNoteDialogComponent} from "./create-note-dialog/create-note-dialog.component";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-notes-list',
@@ -12,13 +13,21 @@ export class NotesListComponent implements OnInit {
 
   constructor(public dialog: MatDialog) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.notes$.subscribe(notes=> this.notesToShow = notes);
+  }
 
-  @Input() notes: Note[] = [];
+  @Input() notes$: Observable<Note[]> = new Observable<Note[]>();
   @Output() onActiveNoteChange: EventEmitter<Note> = new EventEmitter<Note>();
   @Output() onCreateNewNote: EventEmitter<Note> = new EventEmitter<Note>();
 
   activeNoteId: number = 0;
+  notesToShow: Note[] = [];
+  input: string = ""
+
+  getFilteredArray = () => {
+    return this.notesToShow.filter(note => note.title.includes(this.input) || note.description.includes(this.input))
+  }
 
   getDescriptionPreview(note : Note): string {
     const descriptionPreviewLength = 35;

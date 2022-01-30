@@ -42,7 +42,7 @@ export const defaultSharedNote = {
     " pretium nibh ipsum consequat nisl vel pretium. Et egestas quis ipsum suspendisse." +
     " Fermentum posuere urna nec tincidunt praesent semper feugiat nibh sed.",
   date: "15.12.2021 6:14:55",
-  userId: 1,
+  userId: 0,
   token: Guid.create()
 }
 
@@ -57,7 +57,7 @@ export const defaultSharedNotesArray = [
       " at. Ipsum consequat nisl vel pretium lectus quam id leo. Pretium fusce" +
       " id velit ut tortor pretium.",
     date: "15.12.2021 6:12:34",
-    userId: 1,
+    userId: 0,
     token: Guid.create()
   },
   {
@@ -69,7 +69,7 @@ export const defaultSharedNotesArray = [
       " risus viverra adipiscing at in. Massa placerat duis ultricies lacus" +
       " sed turpis. Odio morbi quis commodo odio aenean sed adipiscing diam donec.",
     date: "15.12.2021 6:14:55",
-    userId: 1,
+    userId: 0,
     token: Guid.create()
   }
 ]

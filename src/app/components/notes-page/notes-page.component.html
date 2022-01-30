@@ -1,6 +1,6 @@
 <div class="container">
   <app-notes-list
-    [notes]="(notes$ | async) || []"
+    [notes$]="notes$"
     (onActiveNoteChange)="onActiveNoteChange($event)"
     (onCreateNewNote)="onCreateNote($event)"
   >

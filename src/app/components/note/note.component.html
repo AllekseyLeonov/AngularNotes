@@ -2,7 +2,7 @@
   <h2 class="title" [textContent]="note.title"></h2>
   <h4 [textContent]="note.description"></h4>
 </div>
-<div>
+<div *ngIf="note.userId == 1">
   <button mat-icon-button>
     <mat-icon (click)="openEditDialog()">edit</mat-icon>
   </button>
