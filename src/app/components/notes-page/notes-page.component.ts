@@ -3,7 +3,7 @@ import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 
 import {Note} from "../../core/models/Note";
-import {defaultNote, defaultNotesArray} from "../../constans/notesDefaults";
+import {defaultNote} from "../../constans/notesDefaults";
 import {createRequest, deleteRequest, editRequest, getRequest, notesSelector} from "../../store";
 
 
@@ -23,7 +23,7 @@ export class NotesPageComponent implements OnInit {
   constructor(private store$:Store, private  cdr: ChangeDetectorRef,){}
 
   ngOnInit(): void {
-    this.store$.dispatch(getRequest({userId: 1}));
+    this.store$.dispatch(getRequest());
     this.notes$.subscribe(notesFromStore => {
       this.notes = notesFromStore;
       this.cdr.detectChanges();
@@ -53,7 +53,6 @@ export class NotesPageComponent implements OnInit {
         title: note.title,
         description: note.description,
         date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`,
-        userId: 1,
       }
       this.store$.dispatch(createRequest({note: newNote}));
     }

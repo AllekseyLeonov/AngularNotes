@@ -1,5 +1,7 @@
+export const defaultNoteId = -1;
+
 export const defaultNote = {
-  id: 1,
+  id: defaultNoteId,
   title: "Default note",
   description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
     " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
@@ -42,29 +44,3 @@ export const defaultNote = {
   date: "15.12.2021 6:14:55",
   userId: 0
 }
-
-export const defaultNotesArray = [
-  {
-    id: 2,
-    title: "Note 1",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
-      " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-      " Turpis egestas integer eget aliquet nibh praesent tristique magna." +
-      " Egestas maecenas pharetra convallis posuere morbi leo urna molestie" +
-      " at. Ipsum consequat nisl vel pretium lectus quam id leo. Pretium fusce" +
-      " id velit ut tortor pretium.",
-    date: "15.12.2021 6:12:34",
-    userId: 0
-  },
-  {
-    id: 3,
-    title: "Note 2",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
-      " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." +
-      " A iaculis at erat pellentesque adipiscing commodo elit. Tortor at" +
-      " risus viverra adipiscing at in. Massa placerat duis ultricies lacus" +
-      " sed turpis. Odio morbi quis commodo odio aenean sed adipiscing diam donec.",
-    date: "15.12.2021 6:14:55",
-    userId: 0
-  }
-]

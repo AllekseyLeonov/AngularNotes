@@ -13,24 +13,20 @@ import {StoreModule} from '@ngrx/store';
 import {FormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
+import {MatSelectModule} from "@angular/material/select";
+import {EffectsModule} from "@ngrx/effects";
 
 import {AppComponent} from './app.component';
 import {NoteComponent} from './components/note/note.component';
 import {HeaderComponent} from './components/header/header.component';
 import {NotesPageComponent} from './components/notes-page/notes-page.component';
 import {NotesListComponent} from "./components/notes-list/notes-list.component";
-import {SharedNotesPageComponent} from './components/shared-notes-page/shared-notes-page.component';
 import {AboutComponent} from './components/about/about.component';
 import {DeleteDialogComponent} from './components/note/delete-dialog/delete-dialog.component';
 import {EditDialogComponent} from './components/note/edit-dialog/edit-dialog.component';
 import {CreateNoteDialogComponent} from './components/notes-list/create-note-dialog/create-note-dialog.component';
-import {notesReducer} from "./store";
-import {EffectsModule} from "@ngrx/effects";
-import {notesEffects} from "./store/notesEffects";
 import NotesService from "./core/services/NotesService";
 import NotesStoreModule from "./store/notes-store/notes-store.module";
-import {MatSelectModule} from "@angular/material/select";
-
 
 const appRoutes: Routes = [
   {
@@ -38,7 +34,6 @@ const appRoutes: Routes = [
     component: NotesPageComponent,
     loadChildren: () => import("./store/notes-store/notes-store.module").then(mod => mod.default)
   },
-  {path: 'shared-notes', component: SharedNotesPageComponent},
   {path: 'about', component: AboutComponent},
   {path: "**", redirectTo: "notes"},
 ];
@@ -50,7 +45,6 @@ const appRoutes: Routes = [
     HeaderComponent,
     NotesPageComponent,
     NotesListComponent,
-    SharedNotesPageComponent,
     AboutComponent,
     DeleteDialogComponent,
     EditDialogComponent,

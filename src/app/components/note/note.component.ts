@@ -2,7 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 
 import {Note} from "../../core/models/Note";
-import {defaultNote} from "../../constans/notesDefaults";
+import {defaultNote, defaultNoteId} from "../../constans/notesDefaults";
 import {DeleteDialogComponent} from "./delete-dialog/delete-dialog.component";
 import {EditDialogComponent} from "./edit-dialog/edit-dialog.component";
 
@@ -20,6 +20,7 @@ export class NoteComponent implements OnInit {
   @Input() note: Note = defaultNote;
   @Output() onEditNote : EventEmitter<Note> = new EventEmitter<Note>();
   @Output() onDeleteNote : EventEmitter<Note> = new EventEmitter<Note>();
+  defaultNoteId: number = defaultNoteId;
 
   openDeleteDialog() {
     const deleteDialog = this.dialog.open(DeleteDialogComponent);

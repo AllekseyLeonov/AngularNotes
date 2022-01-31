@@ -10,8 +10,8 @@ import {environment} from "../../../environments/environment";
 export default class NotesService implements INotesService{
   constructor(private client: HttpClient) {}
 
-  getNotesByUserId$(userId: number): Observable<Note[]> {
-    return this.client.get<Note[]>(`${environment.apiRootAddress}/notes?userId=${userId}`);
+  getNotesByUserId$(): Observable<Note[]> {
+    return this.client.get<Note[]>(`${environment.apiRootAddress}/notes`);
   }
 
   createNote$(note: Note): Observable<Note>{

@@ -26,7 +26,7 @@ export const createRequest = createAction(notesKey + "createRequest", props<{not
 export const createRequestSuccess = createAction(notesKey + "createRequestSuccess", props<{note: Note}>());
 export const createRequestError = createAction(notesKey + "createRequestError", props<{error:string}>());
 
-export const getRequest = createAction(notesKey + "getRequest", props<{userId: number}>());
+export const getRequest = createAction(notesKey + "getRequest");
 export const getRequestSuccess = createAction(notesKey + "getRequestSuccess", props<{notes: Note[]}>());
 export const getRequestError = createAction(notesKey + "getRequestError", props<{error:string}>());
 

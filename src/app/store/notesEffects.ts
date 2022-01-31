@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Actions, createEffect, ofType} from '@ngrx/effects';
 import { catchError, map, switchMap } from 'rxjs/operators';
-import NotesService from "../core/services/NotesService";
 import {
   createRequest,
   createRequestError,
@@ -12,6 +11,7 @@ import {
 } from "./index";
 import {Observable, of} from "rxjs";
 import {Action} from "@ngrx/store";
+import NotesService from "../core/services/NotesService";
 
 @Injectable()
 export class notesEffects{
@@ -39,7 +39,7 @@ export class notesEffects{
       return this.actions$.pipe(
         ofType(getRequest),
         switchMap(action => {
-            return this.notesService.getNotesByUserId$(action.userId).pipe(
+            return this.notesService.getNotesByUserId$().pipe(
               map(result => {
                 return getRequestSuccess({notes: result})
               }),
