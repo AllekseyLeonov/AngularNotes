@@ -1,11 +1,11 @@
-import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
 
 import {Note} from "../../models/Note";
-import {Observable} from "rxjs";
+import {NoteDTO} from "../../models/NoteDTO";
 
 export interface INotesService{
   getNotesByUserId$() : Observable<Note[]>
-  createNote$(note: Note): Observable<Note>
+  createNote$(note: NoteDTO): Observable<Note>
   deleteNote$(noteId: number): Observable<Note>
   editNote$(note: Note): Observable<Note>
 }

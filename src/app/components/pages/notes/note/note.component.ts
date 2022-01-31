@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 
-import {Note} from "../../core/models/Note";
-import {defaultNote, defaultNoteId} from "../../constans/notesDefaults";
+import {Note} from "../../../../core/models/Note";
+import {defaultNote, defaultNoteId} from "../../../../constans/notesDefaults";
 import {DeleteDialogComponent} from "./delete-dialog/delete-dialog.component";
 import {EditDialogComponent} from "./edit-dialog/edit-dialog.component";
 

@@ -8,10 +8,10 @@ import {
   getRequest,
   getRequestError,
   getRequestSuccess
-} from "./index";
+} from "./actions";
 import {Observable, of} from "rxjs";
 import {Action} from "@ngrx/store";
-import NotesService from "../core/services/NotesService";
+import NotesService from "../../../../core/services/NotesService";
 
 @Injectable()
 export class notesEffects{

@@ -17,22 +17,22 @@ import {MatSelectModule} from "@angular/material/select";
 import {EffectsModule} from "@ngrx/effects";
 
 import {AppComponent} from './app.component';
-import {NoteComponent} from './components/note/note.component';
-import {HeaderComponent} from './components/header/header.component';
-import {NotesPageComponent} from './components/notes-page/notes-page.component';
-import {NotesListComponent} from "./components/notes-list/notes-list.component";
-import {AboutComponent} from './components/about/about.component';
-import {DeleteDialogComponent} from './components/note/delete-dialog/delete-dialog.component';
-import {EditDialogComponent} from './components/note/edit-dialog/edit-dialog.component';
-import {CreateNoteDialogComponent} from './components/notes-list/create-note-dialog/create-note-dialog.component';
+import {NoteComponent} from './components/pages/notes/note/note.component';
+import {HeaderComponent} from './components/common/header/header.component';
+import {NotesPageComponent} from './components/pages/notes/notes-page.component';
+import {NotesListComponent} from "./components/pages/notes/notes-list/notes-list.component";
+import {AboutComponent} from './components/pages/about/about.component';
+import {DeleteDialogComponent} from './components/pages/notes/note/delete-dialog/delete-dialog.component';
+import {EditDialogComponent} from './components/pages/notes/note/edit-dialog/edit-dialog.component';
+import {CreateNoteDialogComponent} from './components/pages/notes/notes-list/create-note-dialog/create-note-dialog.component';
 import NotesService from "./core/services/NotesService";
-import NotesStoreModule from "./store/notes-store/notes-store.module";
+import NotesStoreModule from "./components/pages/notes/store/notes-store.module";
 
 const appRoutes: Routes = [
   {
     path: 'notes',
     component: NotesPageComponent,
-    loadChildren: () => import("./store/notes-store/notes-store.module").then(mod => mod.default)
+    loadChildren: () => import("./components/pages/notes/store/notes-store.module").then(mod => mod.default)
   },
   {path: 'about', component: AboutComponent},
   {path: "**", redirectTo: "notes"},

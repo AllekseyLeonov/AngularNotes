@@ -5,6 +5,7 @@ import {Injectable} from "@angular/core";
 import {INotesService} from "./interfaces/INotesService";
 import {Note} from "../models/Note";
 import {environment} from "../../../environments/environment";
+import {NoteDTO} from "../models/NoteDTO";
 
 @Injectable()
 export default class NotesService implements INotesService{
@@ -14,7 +15,7 @@ export default class NotesService implements INotesService{
     return this.client.get<Note[]>(`${environment.apiRootAddress}/notes`);
   }
 
-  createNote$(note: Note): Observable<Note>{
+  createNote$(note: NoteDTO): Observable<Note>{
     return this.client.post<Note>(`${environment.apiRootAddress}/createNote`, note);
   }
 

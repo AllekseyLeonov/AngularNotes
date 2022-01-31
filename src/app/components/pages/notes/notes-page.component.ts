@@ -2,18 +2,14 @@ import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@an
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 
-import {Note} from "../../core/models/Note";
-import {defaultNote} from "../../constans/notesDefaults";
-import {createRequest, deleteRequest, editRequest, getRequest, notesSelector} from "../../store";
-
-
-export interface NoteViewModel {
-  title: string,
-  description: string,
-}
+import {Note} from "../../../core/models/Note";
+import {defaultNote} from "../../../constans/notesDefaults";
+import {createRequest, deleteRequest, editRequest, getRequest} from "./store/actions";
+import {notesSelector} from "./store/selectors";
+import {NoteDTO} from "../../../core/models/NoteDTO";
 
 @Component({
-  selector: 'app-notes-page',
+  selector: 'app-notes',
   templateUrl: './notes-page.component.html',
   styleUrls: ['./notes-page.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -45,16 +41,9 @@ export class NotesPageComponent implements OnInit {
     }
   }
 
-  onCreateNote(note: NoteViewModel){
+  onCreateNote(note: NoteDTO){
     if(note && note.title && note.description){
-      const date = new Date();
-      const newNote = {
-        id: Math.max.apply(null, this.notes.map(note=> note.id)) + 1,
-        title: note.title,
-        description: note.description,
-        date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`,
-      }
-      this.store$.dispatch(createRequest({note: newNote}));
+      this.store$.dispatch(createRequest({note: note}));
     }
   }
 

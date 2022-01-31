@@ -7,7 +7,7 @@ import {
   OnInit,
   Output
 } from '@angular/core';
-import {Note} from "../../core/models/Note";
+import {Note} from "../../../../core/models/Note";
 import {MatDialog} from "@angular/material/dialog";
 import {CreateNoteDialogComponent} from "./create-note-dialog/create-note-dialog.component";
 import {MatSelectChange} from "@angular/material/select";

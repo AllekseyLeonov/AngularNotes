@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {Note} from "../../../core/models/Note";
-import {NoteViewModel} from "../../notes-page/notes-page.component";
+import {NoteDTO} from "../../../../../core/models/NoteDTO";
 
 @Component({
   selector: 'app-create-note-dialog',
@@ -12,7 +11,7 @@ export class CreateNoteDialogComponent implements OnInit {
   constructor() { }
   ngOnInit(): void {}
 
-  note: NoteViewModel = {title: "", description: ""};
+  note: NoteDTO = {title: "", description: ""};
 
   onInputTitle(title: string){
     this.note.title = title;
