@@ -17,3 +17,25 @@
 .add-button{
   align-self: center;
 }
+
+.row-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  justify-content: space-between;
+}
+
+mat-list {
+  max-height: 400px;
+  overflow: auto;
+}
+
+mat-form-field{
+  width: inherit;
+}
+
+.full-screen-modal .mat-dialog-container {
+  max-width: none;
+}
+

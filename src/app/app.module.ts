@@ -29,6 +29,7 @@ import {EffectsModule} from "@ngrx/effects";
 import {notesEffects} from "./store/notesEffects";
 import NotesService from "./core/services/NotesService";
 import NotesStoreModule from "./store/notes-store/notes-store.module";
+import {MatSelectModule} from "@angular/material/select";
 
 
 const appRoutes: Routes = [
@@ -55,24 +56,25 @@ const appRoutes: Routes = [
     EditDialogComponent,
     CreateNoteDialogComponent,
   ],
-  imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatRippleModule,
-    MatDialogModule,
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes),
-    HttpClientModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
-    NotesStoreModule,
-  ],
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+        MatListModule,
+        MatRippleModule,
+        MatDialogModule,
+        MatFormFieldModule,
+        MatInputModule,
+        FormsModule,
+        RouterModule.forRoot(appRoutes),
+        HttpClientModule,
+        StoreModule.forRoot({}),
+        EffectsModule.forRoot([]),
+        NotesStoreModule,
+        MatSelectModule,
+    ],
   providers: [{provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}, NotesService],
   bootstrap: [AppComponent]
 })

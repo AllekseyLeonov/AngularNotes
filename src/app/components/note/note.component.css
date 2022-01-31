@@ -8,3 +8,6 @@
   width: 100%;
   padding: 0 10px;
 }
+.full-screen-modal .mat-dialog-container {
+  max-width: none;
+}

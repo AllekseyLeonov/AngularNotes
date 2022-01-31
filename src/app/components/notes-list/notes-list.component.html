@@ -1,7 +1,21 @@
 <div class="container">
-  <mat-form-field>
-    <input matNativeControl [(ngModel)]="input">
-  </mat-form-field>
+  <div class="row-container">
+    <mat-icon>search</mat-icon>
+    <mat-form-field>
+      <input matNativeControl autocomplete="off" [(ngModel)]="input">
+    </mat-form-field>
+  </div>
+  <div class="row-container">
+    <mat-icon>filter_list</mat-icon>
+    <mat-form-field appearance="fill">
+      <mat-label>Sort by</mat-label>
+      <mat-select [(ngModel)]="select">
+        <mat-option *ngFor="let filter of filters" [value]="filter.value">
+          {{filter.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <mat-list>
     <mat-list-item
       *ngFor="let note of getFilteredArray()"

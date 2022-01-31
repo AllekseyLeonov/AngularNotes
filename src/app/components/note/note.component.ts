@@ -27,7 +27,17 @@ export class NoteComponent implements OnInit {
   }
 
   openEditDialog() {
-    const editDialogRef = this.dialog.open(EditDialogComponent, {data: {...this.note}});
+    const config = {
+      data: {...this.note},
+      position: {
+        top: '10px',
+        right: '10px'
+      },
+      height: '98%',
+      width: '100vw',
+      panelClass: 'full-screen-modal',
+    };
+    const editDialogRef = this.dialog.open(EditDialogComponent, config);
     editDialogRef.afterClosed().subscribe(result => this.onEditNote.emit(result));
   }
 }

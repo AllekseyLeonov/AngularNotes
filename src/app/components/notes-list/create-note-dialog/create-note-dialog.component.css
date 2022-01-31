@@ -1,3 +1,10 @@
 mat-form-field{
   width: 100%;
 }
+.description{
+  height: auto;
+}
+.buttons{
+  display: flex;
+  justify-content: flex-end;
+}

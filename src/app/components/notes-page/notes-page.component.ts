@@ -39,21 +39,24 @@ export class NotesPageComponent implements OnInit {
   }
 
   onEditNote(editedNote: Note){
-    console.log(editedNote);
-    this.activeNote = editedNote;
-    this.store$.dispatch(editRequest({note: editedNote}));
+    if(editedNote && editedNote.title && editedNote.description){
+      this.activeNote = editedNote;
+      this.store$.dispatch(editRequest({note: editedNote}));
+    }
   }
 
   onCreateNote(note: NoteViewModel){
-    const date = new Date();
-    const newNote = {
-      id: Math.max.apply(null, this.notes.map(note=> note.id)) + 1,
-      title: note.title,
-      description: note.description,
-      date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`,
-      userId: 1,
+    if(note && note.title && note.description){
+      const date = new Date();
+      const newNote = {
+        id: Math.max.apply(null, this.notes.map(note=> note.id)) + 1,
+        title: note.title,
+        description: note.description,
+        date: `${date.getDay()}.${date.getMonth()}.${date.getFullYear()}`,
+        userId: 1,
+      }
+      this.store$.dispatch(createRequest({note: newNote}));
     }
-    this.store$.dispatch(createRequest({note: newNote}));
   }
 
   onDeleteNote(note: Note){
