@@ -47,8 +47,11 @@ export class NotesPageComponent implements OnInit {
     }
   }
 
-  onDeleteNote(note: Note){
-    this.store$.dispatch(deleteRequest({noteId: note.id}));
-    this.activeNote = defaultNote;
+  onDeleteNote(note: Note) {
+    if (note) {
+      this.store$.dispatch(deleteRequest({noteId: note.id}));
+      this.activeNote = defaultNote;
+      this.cdr.detectChanges();
+    }
   }
 }

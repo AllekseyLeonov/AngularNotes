@@ -11,7 +11,7 @@ import {NoteDTO} from "../core/models/NoteDTO";
 export default class NotesService implements INotesService{
   constructor(private client: HttpClient) {}
 
-  getNotesByUserId$(): Observable<Note[]> {
+  getNotes$(): Observable<Note[]> {
     return this.client.get<Note[]>(`${environment.apiRootAddress}/notes`);
   }
 

@@ -24,7 +24,11 @@ export class NoteComponent implements OnInit {
 
   openDeleteDialog() {
     const deleteDialog = this.dialog.open(DeleteDialogComponent);
-    deleteDialog.afterClosed().subscribe(result=> this.onDeleteNote.emit(this.note));
+    deleteDialog.afterClosed().subscribe(result=> {
+      if(result) {
+        this.onDeleteNote.emit(this.note);
+      }
+    });
   }
 
   openEditDialog() {

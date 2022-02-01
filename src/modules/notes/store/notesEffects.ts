@@ -11,20 +11,18 @@ import {
 } from "./actions";
 import {Observable, of} from "rxjs";
 import {Action} from "@ngrx/store";
-import NotesService from "../services/NotesService";
+import {FakeNotesService} from "../services/FakeNotesService";
 
 @Injectable()
 export class notesEffects{
-  constructor(private notesService: NotesService, private actions$: Actions) {}
+  constructor(private notesService: FakeNotesService, private actions$: Actions) {}
 
   createNoteRequestEffect$: Observable<Action> = createEffect(() => {
       return this.actions$.pipe(
         ofType(createRequest),
         switchMap(action => {
-          console.log(action);
           return this.notesService.createNote$(action.note).pipe(
               map(result => {
-                console.log(result);
                 return createRequestSuccess({note: result})
               }),
               catchError(error => of(createRequestError({ error })))
@@ -39,7 +37,7 @@ export class notesEffects{
       return this.actions$.pipe(
         ofType(getRequest),
         switchMap(action => {
-            return this.notesService.getNotesByUserId$().pipe(
+            return this.notesService.getNotes$().pipe(
               map(result => {
                 return getRequestSuccess({notes: result})
               }),
